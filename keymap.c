@@ -4,6 +4,7 @@
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
+#define _FUNCS 3
 #define _PLANK 4
 
 /* ENTER when tapped / SHIFT when held */
@@ -21,6 +22,7 @@
 #define QWERTY TO(_QWERTY)
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define FUNCS TO(_FUNCS)
 #define PLANK TO(_PLANK)
 
 enum unicode_names {
@@ -90,13 +92,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
 │       │       │       │       │       │       │       │       │   -   │   +   │       │ Shift │
 ├───────┼───────┼───────┼───────┼───────┼───────┴───────┼───────┼───────┼───────┼───────┼───────┤
-│   1   │   2   │   3   │   4   │   5   │       =       │   ▽   │ Plank │ Super │  Alt  │  Ctrl │
+│   1   │   2   │   3   │   4   │   5   │       =       │   ▽   │ Funcs │ Super │  Alt  │  Ctrl │
 └───────┴───────┴───────┴───────┴───────┴───────────────┴───────┴───────┴───────┴───────┴───────┘ */
 [_LOWER] = LAYOUT_planck_mit(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, FI_ODIA, XXXXXXX, KC_DEL,
     XXXXXXX, FI_ADIA, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PMNS, KC_PPLS, XXXXXXX, KC_RSFT,
-    KC_1, KC_2, KC_3, KC_4, KC_5, KC_PEQL, KC_TRNS, PLANK, KC_RCMD, KC_ROPT, KC_RCTL
+    KC_1, KC_2, KC_3, KC_4, KC_5, KC_PEQL, KC_TRNS, FUNCS, KC_LCMD, KC_LOPT, KC_LCTL
 ),
 
 /* Raise - IT
@@ -116,6 +118,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL, KC_LOPT, KC_LCMD, PLANK, KC_TRNS, KC_UNDS, KC_6, KC_7, KC_8, KC_9, KC_0
 ),
 
+/* Funcs
+┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
+│       │  F1   │  F2   │  F3   │  F4   │       │       │       │       │       │       │  Exit │
+├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+│       │  F5   │  F6   │  F7   │  F8   │       │       │       │       │       │       │       │
+├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+│       │  F9   │  F10  │  F11  │  F12  │       │       │       │       │       │       │       │
+├───────┼───────┼───────┼───────┼───────┼───────┴───────┼───────┼───────┼───────┼───────┼───────┤
+│       │       │       │       │       │               │       │       │ Super │  Alt  │  Ctrl │
+└───────┴───────┴───────┴───────┴───────┴───────────────┴───────┴───────┴───────┴───────┴───────┘ */
+[_FUNCS] = LAYOUT_planck_mit(
+    XXXXXXX, KC_F1, KC_F2, KC_F3, KC_F4, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QWERTY,
+    XXXXXXX, KC_F5, KC_F6, KC_F7, KC_F8, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, KC_F9, KC_F10, KC_F11, KC_F12, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LCMD, KC_LOPT, KC_LCTL
+),
+
 /* Plank
 ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
 │ Reset │       │       │       │       │       │       │       │       │       │       │  Exit │
@@ -128,8 +147,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 └───────┴───────┴───────┴───────┴───────┴───────────────┴───────┴───────┴───────┴───────┴───────┘ */
 [_PLANK] = LAYOUT_planck_mit(
     QK_BOOTLOADER, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QWERTY,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, UNICODE_MODE_LNX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, UNICODE_MODE_MAC, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, UNICODE_MODE_LINUX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, UNICODE_MODE_MACOS, XXXXXXX, XXXXXXX, XXXXXXX, RGB_TOG,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 )
 
@@ -140,11 +159,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     case _QWERTY:
         rgblight_setrgb(0x00, 0x00, 0x00);
         break;
-    case _LOWER:
+    case _FUNCS:
         rgblight_setrgb(0x00, 0x00, 0x96);
-        break;
-    case _RAISE:
-        rgblight_setrgb(0x00, 0x96, 0x00);
         break;
     case _PLANK:
         rgblight_setrgb(0x96, 0x00, 0x00);
